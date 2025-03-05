@@ -1,0 +1,10 @@
+{% extends "resume/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+{% if resume %}
+    <p>You already have a resume saved. <a href="{% url 'resume:view_resume' %}">View your resume</a> or <a href="{% url 'resume:create_resume' %}">edit your resume</a>.</p>
+{% else %}
+    <p>You don't have a resume yet. <a href="{% url 'resume:create_resume' %}">Create one now</a>.</p>
+{% endif %}
+{% endblock %}

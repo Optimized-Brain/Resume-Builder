@@ -1,0 +1,63 @@
+{% extends "resume/base.html" %}
+{% block title %}Create Resume{% endblock %}
+{% block content %}
+<h2>Create / Edit Your Resume</h2>
+<form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.full_name.id_for_label }}">Full Name</label>
+        {{ form.full_name.errors }}
+        {{ form.full_name }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">Email</label>
+        {{ form.email.errors }}
+        {{ form.email }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.phone.id_for_label }}">Phone</label>
+        {{ form.phone.errors }}
+        {{ form.phone }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.address.id_for_label }}">Address</label>
+        {{ form.address.errors }}
+        {{ form.address }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.about.id_for_label }}">About</label>
+        {{ form.about.errors }}
+        {{ form.about }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.education.id_for_label }}">Education</label>
+        {{ form.education.errors }}
+        {{ form.education }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.work_experience.id_for_label }}">Work Experience</label>
+        {{ form.work_experience.errors }}
+        {{ form.work_experience }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.skills.id_for_label }}">Skills</label>
+        {{ form.skills.errors }}
+        {{ form.skills }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Resume</button>
+</form>
+{% endblock %}

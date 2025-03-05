@@ -1,0 +1,151 @@
+<!-- resume/templates/resume/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Resume Builder{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <style>
+    /* Inline CSS to center the navbar title */
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /* Additional footer styles */
+    .footer-section {
+      padding: 20px 0;
+      border-top: 1px solid #eaeaea;
+    }
+    .footer-section h5 {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .stats-icon {
+      width: 50px;
+      height: auto;
+    }
+    .resource-icon {
+      width: 20px;
+      height: auto;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% if not pdf %}
+      <h1 class="navbar-brand" href="{% url 'resume:dashboard' %}">Resume Builder</h1>
+    {% endif %}
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        {% if not pdf %}
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:create_resume' %}">Create Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:view_resume' %}">View Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:download_pdf' %}">Download PDF</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:logout' %}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'resume:register' %}">Register</a></li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+{% if not pdf %}
+  <footer class="bg-light mt-5">
+    <div class="container py-4">
+      <div class="row footer-section">
+        <!-- Resume Tips Section -->
+        <div class="col-md-4">
+          <h5>Resume Tips</h5>
+          <ul class="list-unstyled">
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="Check">
+              Keep your resume concise and targeted.
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="Check">
+              Tailor your resume for each application.
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="Check">
+              Use a clean, professional format.
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="Check">
+              Highlight measurable achievements.
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="Check">
+              Proofread carefully for errors.
+            </li>
+          </ul>
+        </div>
+        <!-- Resume Statistics Section -->
+        <div class="col-md-4 text-center">
+          <h5>Did You Know?</h5>
+          <img class="stats-icon mb-2" src="https://img.icons8.com/color/96/000000/combo-chart--v1.png" alt="Statistics Icon">
+          <p class="small">
+            Recruiters spend an average of 6 seconds reviewing a resume. A well-crafted resume can boost your chance of landing an interview!
+          </p>
+          <p class="small">
+            Over 80% of hiring managers value a clean layout and structure.
+          </p>
+        </div>
+        <!-- Helpful Resources Section -->
+        <div class="col-md-4">
+          <h5>Helpful Resources</h5>
+          <ul class="list-unstyled">
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/link.png" alt="Link">
+              <a href="https://www.thebalancecareers.com/resume-tips-2063332" target="_blank">The Balance Careers: Resume Tips</a>
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/link.png" alt="Link">
+              <a href="https://www.indeed.com/career-advice/resume-samples" target="_blank">Indeed: Resume Samples</a>
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/link.png" alt="Link">
+              <a href="https://www.linkedin.com/business/learning/blog/career-success-tips/how-to-write-a-resume-that-will-actually-get-a-recruiter-s-atten" target="_blank">LinkedIn Learning: Resume Writing</a>
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/link.png" alt="Link">
+              <a href="https://www.forbes.com/sites/jameshudson/2023/11/29/a-recruiters-guide-to-writing-a-resume/" target="_blank">Forbes: A Recruiter’s Guide To Writing A Resume</a>
+            </li>
+            <li>
+              <img class="resource-icon" src="https://img.icons8.com/color/48/000000/link.png" alt="Link">
+              <a href="https://www.glassdoor.com/blog/guide/how-to-write-a-resume/" target="_blank">Glassdoor: Resume Tips</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Additional Footer Data and Contact Info -->
+      <div class="row footer-section">
+        <div class="col-12 text-center">
+          <p class="small">
+            <strong>Resume Builder</strong> is here to help you create an outstanding resume. Visit our blog for more career tips and insights.
+          </p>
+          <p class="small">
+            <a href="https://medium.com/@optimizedbrain" target="_blank">Visit our blog</a> | <a href="mailto:shoaibattar3849@gmail.com">Contact Us</a>
+          </p>
+          <p class="small">&copy; 2025 Resume Builder. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  {%endif%}
+</body>
+</html>

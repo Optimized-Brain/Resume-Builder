@@ -1,0 +1,27 @@
+<!-- resume/templates/resume/view_resume.html -->
+{% extends "resume/base.html" %}
+{% block title %}Your Resume{% endblock %}
+{% block content %}
+<h2>Your Resume</h2>
+<div class="card">
+    <div class="card-body">
+        <h3>{{ resume.full_name }}</h3>
+        <p><strong>Email:</strong> {{ resume.email }}</p>
+        <p><strong>Phone:</strong> {{ resume.phone }}</p>
+        <p><strong>Address:</strong> {{ resume.address }}</p>
+        <hr>
+        <h4>About Me</h4>
+        <p>{{ resume.about }}</p>
+        <h4>Education</h4>
+        <p>{{ resume.education }}</p>
+        <h4>Work Experience</h4>
+        <p>{{ resume.work_experience }}</p>
+        <h4>Skills</h4>
+        <p>{{ resume.skills }}</p>
+    </div>
+</div>
+<br>
+{% if not pdf %}
+    <a href="{% url 'resume:download_pdf' %}" class="btn btn-success">Download PDF</a>
+{% endif %}
+{% endblock %}
