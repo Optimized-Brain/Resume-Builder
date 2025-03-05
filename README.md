@@ -3,7 +3,7 @@
 # Resume Builder
 
 **Resume Builder** is a Django-based web application which i made for praticing and learning mroe about django framework and other related tools. With an intuitive form interface and helpful resume tips, this project aims to streamline the process of building a standout resume for job applications.
-![Screenshot of Resume Builder]
+![Screenshot of Resume Builder](./Resume-Builder-SS.png)
 
 
 ## Table of Contents
