@@ -154,7 +154,6 @@ In the views, the PDF generation view renders the resume template to an HTML str
 ## Customization
 
 - **Styling:**  
-  Modify `static/css/main.css` or add inline styles in `base.html` to adjust the look and feel.
 
 - **Templates:**  
   Edit the templates in `resume/templates/resume/` to suit your desired layout. The base template includes a footer with helpful resume tips and external links.
